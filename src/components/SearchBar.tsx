@@ -1,20 +1,17 @@
 "use client";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-  const router = useRouter();
-
-  e.preventDefault();
-  const formData = new FormData(e.currentTarget);
-  const name = formData.get("name") as string;
-
-  if (name) {
-    router.push(`/list?name=${name}`);
-  }
-};
-
 const SearchBar = () => {
+  const router = useRouter();
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    if (name) {
+      router.push(`/list?name=${name}`);
+    }
+  };
   return (
     <form
       className="flex items-center justify-between gap-4 bg-gray-100 p-2 rounded-md flex-1"
